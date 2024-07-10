@@ -53,7 +53,7 @@ function getJSONiqLexerType(text: string) {
 
 function getTokensForText(textLine: string) {
   let currIndex = 0;
-  let tokens: any = [];
+  const tokens: any = [];
   textLine.split(' ').forEach(word => {
     if (word.length > 0 && word[0] === '$') {
       // variable
@@ -149,12 +149,12 @@ describe('tokenizer module single tokens', () => {
 
   test('checks if a string is correctly identified', () => {
     const testTokenState = createCurrentToken(
-      `"some string"`,
+      'some string',
       jsoniqLexer.STRING,
       0
     );
     const testState = createState('', false);
-    const testStringStream = new StringStream(`"some string"`, 0, 0);
+    const testStringStream = new StringStream('some string', 0, 0);
     const testConverter = new TokenToCodeMirrorStyleConverter(
       testTokenState,
       testStringStream,
@@ -368,7 +368,7 @@ describe('tokenizer module multiple tokens', () => {
         testState
       );
       const converterResult = testConverter.convertTokenToCodeMirrorStyle();
-      if (converterResult == null) {
+      if (converterResult === null) {
         testStringStream.next();
       } else {
         expect(converterResult).toBe(expectedValueClasses[idx]);
@@ -389,7 +389,7 @@ describe('tokenizer module multiple tokens and state', () => {
       'propertyName'
     ];
     const tokens = getTokensForText(testLine);
-    let transitionState = createState('', false);
+    const transitionState = createState('', false);
     const testStringStream = new StringStream(testLine, 0, 0);
     tokens.forEach((token: any, idx: any) => {
       const testConverter = new TokenToCodeMirrorStyleConverter(
@@ -398,7 +398,7 @@ describe('tokenizer module multiple tokens and state', () => {
         transitionState
       );
       const converterResult = testConverter.convertTokenToCodeMirrorStyle();
-      if (converterResult == null) {
+      if (converterResult === null) {
         testStringStream.next();
       } else {
         expect(converterResult).toBe(expectedValueClasses[idx]);
