@@ -1,10 +1,10 @@
 // import antlr from "antlr4";
-import { CharStream, CommonTokenStream, CommonToken } from "antlr4ng";
-import { tags, Tag } from "@lezer/highlight";
-import { StreamLanguage, StringStream } from "@codemirror/language";
-import { jsoniqLexer } from "../grammar/jsoniqLexer.js";
+import { CharStream, CommonTokenStream, CommonToken } from 'antlr4ng';
+import { tags, Tag } from '@lezer/highlight';
+import { StreamLanguage, StringStream } from '@codemirror/language';
+import { jsoniqLexer } from '../grammar/jsoniqLexer.js';
 
-interface Token {
+interface IToken {
   tokenName: string;
   text: string;
   type: number;
@@ -12,7 +12,7 @@ interface Token {
   stopIndex: number;
 }
 
-interface TokenizerState {
+interface ITokenizerState {
   tokenValueClassFromPreviousTokenContext: string;
   hasTokenValueClassFromPreviousToken: boolean;
 }
@@ -25,36 +25,36 @@ class Tokenizer {
   }
 
   private getTokensForText(text: string) {
-    var chars = CharStream.fromString(text);
-    var lexer = new jsoniqLexer(chars);
-    var tokensStream = new CommonTokenStream(lexer);
+    const chars = CharStream.fromString(text);
+    const lexer = new jsoniqLexer(chars);
+    const tokensStream = new CommonTokenStream(lexer);
     tokensStream.fill();
     return this.convertCommonTokensToTokens((tokensStream as any).tokens);
   }
 
-  private convertCommonTokensToTokens(tokens: CommonToken[]): Token[] {
-    return tokens.map((token) => {
+  private convertCommonTokensToTokens(tokens: CommonToken[]): IToken[] {
+    return tokens.map(token => {
       return {
         tokenName: this.getTokenNameByTokenValue(token.type),
-        text: token.text || "",
+        text: token.text || '',
         type: token.type,
         startIndex: token.start,
-        stopIndex: token.stop,
+        stopIndex: token.stop
       };
     });
   }
 
   private getTokenNameByTokenValue(tokenValue: number): string {
-    for (let tokenName in jsoniqLexer) {
+    for (const tokenName in jsoniqLexer) {
       if (((jsoniqLexer as any)[tokenName] as number) === tokenValue) {
         return tokenName;
       }
     }
-    return "";
+    return '';
   }
 
-  public findCurrentToken(streamPos: number): Token {
-    return this.tokens.filter((t) => t.startIndex >= streamPos)[0];
+  public findCurrentToken(streamPos: number): IToken {
+    return this.tokens.filter(t => t.startIndex >= streamPos)[0];
   }
 }
 
@@ -63,19 +63,19 @@ export class TokenToCodeMirrorStyleConverter {
   private stream;
   private state;
 
-  constructor(currToken: Token, stream: StringStream, state: TokenizerState) {
+  constructor(currToken: IToken, stream: StringStream, state: ITokenizerState) {
     this.currToken = currToken;
     this.stream = stream;
     this.state = state;
   }
 
   private getStyleNameByTag(tag: Tag): string {
-    for (let t in tags) {
+    for (const t in tags) {
       if ((tags as any)[t] === tag) {
         return t;
       }
     }
-    return "";
+    return '';
   }
 
   public convertTokenToCodeMirrorStyle() {
@@ -261,13 +261,13 @@ export class TokenToCodeMirrorStyleConverter {
 }
 
 export const jsoniqLanguageDefinition = StreamLanguage.define({
-  startState: (_) => {
+  startState: _ => {
     return {
-      tokenValueClassFromPreviousTokenContext: "",
-      hasTokenValueClassFromPreviousToken: false,
+      tokenValueClassFromPreviousTokenContext: '',
+      hasTokenValueClassFromPreviousToken: false
     };
   },
-  token: (stream, state: TokenizerState) => {
+  token: (stream, state: ITokenizerState) => {
     const tokenizier = new Tokenizer(stream.string);
     const tokenConverter = new TokenToCodeMirrorStyleConverter(
       tokenizier.findCurrentToken(stream.pos),
@@ -281,7 +281,7 @@ export const jsoniqLanguageDefinition = StreamLanguage.define({
       tokenValueClassFromPreviousTokenContext:
         state.tokenValueClassFromPreviousTokenContext,
       hasTokenValueClassFromPreviousToken:
-        state.hasTokenValueClassFromPreviousToken,
+        state.hasTokenValueClassFromPreviousToken
     };
-  },
+  }
 });

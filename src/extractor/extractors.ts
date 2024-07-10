@@ -1,5 +1,5 @@
-import { RegExpForeignCodeExtractor } from "@jupyter-lsp/jupyterlab-lsp";
-import { ILSPCodeExtractorsManager } from "@jupyterlab/lsp";
+import { RegExpForeignCodeExtractor } from '@jupyter-lsp/jupyterlab-lsp';
+import { ILSPCodeExtractorsManager } from '@jupyterlab/lsp';
 
 export class JSONiqExtractor {
   private extractorManager: any;
@@ -9,12 +9,12 @@ export class JSONiqExtractor {
 
   public registerExtractor() {
     const jsoniqExtractor = new RegExpForeignCodeExtractor({
-      language: "jsoniq",
-      pattern: "^%%(jsoniq)( .*?)?\n([^]*)",
+      language: 'jsoniq',
+      pattern: '^%%(jsoniq)( .*?)?\n([^]*)',
       foreignCaptureGroups: [3],
       isStandalone: true,
-      fileExtension: "jq",
+      fileExtension: 'jq'
     });
-    this.extractorManager.register(jsoniqExtractor, "python");
+    this.extractorManager.register(jsoniqExtractor, 'python');
   }
 }
