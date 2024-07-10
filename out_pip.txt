@@ -1,0 +1,53 @@
+Using pip 24.1.2 from /Users/dbuzatu/ETH/ResearchProject/experiments/lib/python3.11/site-packages/pip (python 3.11)
+Non-user install because user site-packages disabled
+Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn
+Initialized build tracking at /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn
+Created build tracker: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn
+Entered build tracker: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn
+Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-install-dsq0na6u
+Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-ephem-wheel-cache-5hkzjjj2
+Obtaining file:///Users/dbuzatu/ETH/ResearchProject/jsoniq-jupyterlab-extension-2
+  Added file:///Users/dbuzatu/ETH/ResearchProject/jsoniq-jupyterlab-extension-2 to build tracker '/private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn'
+  Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-env-lvt63gsg
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-modern-metadata-q0f339pc
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+  Source in /Users/dbuzatu/ETH/ResearchProject/jsoniq-jupyterlab-extension-2 has version 0.1.0, which satisfies requirement jsoniq_jupyterlab_extension==0.1.0 from file:///Users/dbuzatu/ETH/ResearchProject/jsoniq-jupyterlab-extension-2
+  Removed jsoniq_jupyterlab_extension==0.1.0 from file:///Users/dbuzatu/ETH/ResearchProject/jsoniq-jupyterlab-extension-2 from build tracker '/private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn'
+Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-unpack-zg9921ic
+Building wheels for collected packages: jsoniq_jupyterlab_extension
+  Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-wheel-i00uuhqz
+  Destination directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-wheel-i00uuhqz
+  Building editable for jsoniq_jupyterlab_extension (pyproject.toml): started
+  Building editable for jsoniq_jupyterlab_extension (pyproject.toml): finished with status 'done'
+  Created wheel for jsoniq_jupyterlab_extension: filename=jsoniq_jupyterlab_extension-0.1.0-py3-none-any.whl size=1109173 sha256=6e1054f69b7ddb0e78d8d47fc98a92de6643887fee6007ef9c35aa79dc7d1875
+  Stored in directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-ephem-wheel-cache-5hkzjjj2/wheels/4c/17/80/8689e5f8fd9033b4384d98b18ee009c99483a72dd4e36e59be
+Successfully built jsoniq_jupyterlab_extension
+Installing collected packages: jsoniq_jupyterlab_extension
+  Attempting uninstall: jsoniq_jupyterlab_extension
+    Found existing installation: jsoniq_jupyterlab_extension 0.1.0
+    Uninstalling jsoniq_jupyterlab_extension-0.1.0:
+      Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-uninstall-s2uuxvlz
+      Removing file or directory /Users/dbuzatu/ETH/ResearchProject/experiments/bin/jsoniq_lsp_start
+      Created temporary directory: /private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-uninstall-sy9w2bzn
+      Removing file or directory /Users/dbuzatu/ETH/ResearchProject/experiments/lib/python3.11/site-packages/_jsoniq_jupyterlab_extension.pth
+      Created temporary directory: /Users/dbuzatu/ETH/ResearchProject/experiments/lib/python3.11/site-packages/~soniq_jupyterlab_extension-0.1.0.dist-info
+      Removing file or directory /Users/dbuzatu/ETH/ResearchProject/experiments/lib/python3.11/site-packages/jsoniq_jupyterlab_extension-0.1.0.dist-info/
+      Created temporary directory: /Users/dbuzatu/ETH/ResearchProject/experiments/share/jupyter/labextensions/~soniq-jupyterlab-extension
+      Removing file or directory /Users/dbuzatu/ETH/ResearchProject/experiments/share/jupyter/labextensions/jsoniq-jupyterlab-extension/
+      Successfully uninstalled jsoniq_jupyterlab_extension-0.1.0
+
+  changing mode of /Users/dbuzatu/ETH/ResearchProject/experiments/bin/jsoniq_lsp_start to 755
+Successfully installed jsoniq_jupyterlab_extension-0.1.0
+Remote version of pip: 24.1.2
+Local version of pip:  24.1.2
+Was pip installed by pip? True
+Removed build tracker: '/private/var/folders/39/m7r29cs95nqgy0818r6q4lp80000gn/T/pip-build-tracker-nx_b57xn'
