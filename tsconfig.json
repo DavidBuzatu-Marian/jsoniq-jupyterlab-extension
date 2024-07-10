@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "lib",
@@ -10,7 +9,8 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "lib": ["es2022"]
   },
   "ts-node": {
     "esm": true
