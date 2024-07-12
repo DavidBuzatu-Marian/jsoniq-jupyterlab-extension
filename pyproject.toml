@@ -40,7 +40,7 @@ artifacts = [
     "jsoniq_jupyterlab_extension/labextension",
     "jsoniq_jupyterlab_extension/node_modules",
 ]
-exclude = [".github", "binder"]
+exclude = [".github", "binder", "tests", "src"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "jsoniq_jupyterlab_extension/labextension" = "share/jupyter/labextensions/jsoniq-jupyterlab-extension"
@@ -84,6 +84,9 @@ jupyter_jsoniq_language_server = "jsoniq_jupyterlab_extension.jsoniq_spec:load"
 
 [project.scripts]
 jsoniq_lsp_start = "jsoniq_jupyterlab_extension.jsoniq_lsp:main"
+
+[tool.hatch.build.targets.wheel.force-include]
+"jsoniq_jupyterlab_extension/node_modules" = "jsoniq_jupyterlab_extension/node_modules"
 
 [tool.check-wheel-contents]
 ignore = ["W002"]
