@@ -1,6 +1,6 @@
 {
     "name": "jsoniq-jupyterlab-extension",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A JupyterLab extension to enable JSONiq language features within JupyterLab cells.",
     "type": "module",
     "keywords": [

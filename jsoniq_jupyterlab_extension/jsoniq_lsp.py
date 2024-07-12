@@ -19,7 +19,7 @@ NODE_LOCATION = (
 NODE = str(pathlib.Path(NODE_LOCATION).resolve())
 PATH_TO_BIN_JS = str(
     (
-        pathlib.Path(__file__).parent.parent
+        pathlib.Path(__file__).parent
         / "node_modules"
         / "jsoniq-language-server"
         / "dest"
