@@ -1,49 +1,48 @@
-name: 'Step 2: Publish Release'
+name: Publish Package to pip store
 on:
   release:
     types: [published]
-
 jobs:
-  publish_release:
+  build:
+    name: Build distribution 📦
     runs-on: ubuntu-latest
-    environment: release
-    permissions:
-      id-token: write
+
     steps:
-      - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
-
-      - uses: actions/create-github-app-token@v1
-        id: app-token
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          app-id: ${{ vars.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
-      - name: Populate Release
-        id: populate-release
-        uses: jupyter-server/jupyter_releaser/.github/actions/populate-release@v2
+          python-version: '3.x'
+      - name: Install pypa/build
+        run: >-
+          python3 -m
+          pip install
+          build
+          --user
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4
         with:
-          token: ${{ steps.app-token.outputs.token }}
-          branch: ${{ github.event.inputs.branch }}
-          release_url: ${{ github.event.inputs.release_url }}
-          steps_to_skip: ${{ github.event.inputs.steps_to_skip }}
-
-      - name: Finalize Release
-        id: finalize-release
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        uses: jupyter-server/jupyter_releaser/.github/actions/finalize-release@v2
+          name: python-package-distributions
+          path: dist/
+  publish-to-pypi:
+    name: >-
+      Publish Python 🐍 distribution 📦 to PyPI
+    if: startsWith(github.ref, 'refs/tags/') # only publish to PyPI on tag pushes
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/p/jsoniq-jupyterlab-extension
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
         with:
-          token: ${{ steps.app-token.outputs.token }}
-          release_url: ${{ steps.populate-release.outputs.release_url }}
-
-      - name: '** Next Step **'
-        if: ${{ success() }}
-        run: |
-          echo "Verify the final release"
-          echo ${{ steps.finalize-release.outputs.release_url }}
-
-      - name: '** Failure Message **'
-        if: ${{ failure() }}
-        run: |
-          echo "Failed to Publish the Draft Release Url:"
-          echo ${{ steps.populate-release.outputs.release_url }}
+          name: python-package-distributions
+          path: dist/
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
